@@ -1,0 +1,13 @@
+language: java
+
+env:
+  global:
+    - PROTOBUF_VERSION=3.6.1
+install:
+  - wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-all-${PROTOBUF_VERSION}.tar.gz
+  - tar -xzvf protobuf-all-${PROTOBUF_VERSION}.tar.gz
+  - pushd protobuf-all-${PROTOBUF_VERSION} && ./configure --prefix=/usr && make && sudo make install && popd
+
+script:
+  - echo "Running the script!"
+  - protoc --proto_path=livrary --java_out=build/gen src/org.finos.fo
