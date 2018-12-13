@@ -15,3 +15,4 @@ script:
   - echo "Running the script!"
   - mkdir -p target/generated
   - protoc --proto_path=library --java_out=target/generated
+  
