@@ -9,7 +9,7 @@ cache:
     - /home/travis/protobuf-${PROTOBUF_VERSION}
 
 before_install:
-  - "[[ -d protobuf-${PROTOBUF_VERSION} ]] || ./install-protobuf.sh"
+  - "[[ -d \"protobuf-${PROTOBUF_VERSION}\" ]] || ./install-protobuf.sh"
 
 script:
   - echo "Running the script!"
