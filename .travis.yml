@@ -4,11 +4,11 @@ env:
   global:
     - PROTOBUF_VERSION=3.6.1
 
- cache:
-    directories:
-     - /home/travis/protobuf-${PROTOBUF_VERSION}
+cache:
+  directories:
+    - /home/travis/protobuf-${PROTOBUF_VERSION}
 
-install:
+before_install:
   - if [ ! -d protobuf-${PROTOBUF_VERSION} ]; then ./install-protobuf.sh; fi
 
 script:
