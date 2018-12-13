@@ -3,16 +3,20 @@ language: java
 env:
   global:
     - PROTOBUF_VERSION=3.6.1
-
+    - PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
+    - TS_OUT_DIR="./target/generated/ts"
+    - JAVA_OUT_DIR="./target/generated/java"
 cache:
   directories:
     - /home/travis/protobuf-${PROTOBUF_VERSION}
 
 before_install:
   - "[[ ! -d \"protobuf-${PROTOBUF_VERSION}\" ]] || ./install-protobuf.sh"
+  - npm install -g ts-protoc-gen
 
 script:
   - echo "Running the script!"
-  - mkdir -p target/generated
+  - mkdir -p $JAVA_OUT_DIR $TS_OUT_DIR
   - protoc --proto_path=./library --java_out=target/generated ./library/*.proto
-  - ls -l target/generated/*
+  - protoc --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${OUT_DIR}" --ts_out="service=true:${OUT_DIR}" ./library/person.proto
+  - ls -l ./target/generated
