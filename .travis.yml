@@ -9,8 +9,9 @@ cache:
     - /home/travis/protobuf-${PROTOBUF_VERSION}
 
 before_install:
-  - if [ ! -d protobuf-${PROTOBUF_VERSION} ]; then ./install-protobuf.sh; fi
+  - [[ -d protobuf-${PROTOBUF_VERSION} ]] || ./install-protobuf.sh
 
 script:
   - echo "Running the script!"
-  - protoc --proto_path=livrary --java_out=build/gen src/org.finos.fo
+  - mkdir -p target/generated
+  - protoc --proto_path=library --java_out=target/generated

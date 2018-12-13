@@ -1,8 +1,8 @@
 syntax = "proto2";
 
-package tutorial;
+package org.finos.fo;
 
-option java_package = "com.example.tutorial";
+option java_package = "org.finos.fo";
 option java_outer_classname = "AddressBookProtos";
 
 message Person {
