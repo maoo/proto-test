@@ -6,6 +6,7 @@ env:
     - PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
     - TS_OUT_DIR="./target/generated/ts"
     - JAVA_OUT_DIR="./target/generated/java"
+    - PATH=$PATH:protobuf-${PROTOBUF_VERSION}/src
 cache:
   directories:
     - /home/travis/protobuf-${PROTOBUF_VERSION}
