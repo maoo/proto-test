@@ -12,7 +12,7 @@ cache:
     - /home/travis/protobuf-${PROTOBUF_VERSION}
 
 before_install:
-  - "[[ ! -n \"${FORCE_PROTOBUF_INSTALL}\" ]] || rm -rf protobuf-${PROTOBUF_VERSION}"
+  - "[[ -n \"${FORCE_PROTOBUF_INSTALL}\" ]] || rm -rf protobuf-${PROTOBUF_VERSION}"
   - "[[ ! -d \"protobuf-${PROTOBUF_VERSION}\" ]] || ./install-protobuf.sh"
   - npm install -g ts-protoc-gen
 
