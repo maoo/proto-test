@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "library/instruments.proto";
+import "instruments.proto";
 
 package org.finos.fo;
 option java_package = "org.finos.fo";
