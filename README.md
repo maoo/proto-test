@@ -1,5 +1,38 @@
 # proto-test
 
+Travis CI build - https://travis-ci.org/maoo/proto-test
+
+This repo contains a spike to use Protocol Buffer in order to generate object libraries, across different languages, and documentation, starting from a common, human-readable set of definitions.
+
+The set of ocject definitions is in the [library](library) folder.
+
+The transformations are done continuously by Travis CI (see [.travis.yml](.travis.yml)), which also takes care of installing the `protoc` commandline tool.
+
+## Features
+- Using Protocol Buffer version 3 to define object models
+- Generate TypeScript definitions and Java classes
+- Generate a single Markdown file with object documentation (Travis CI integration is WIP)
+
+## Open Questions
+- General recommendation on version 2 VS 3
+- Any best practice to work around inheritance absence?
+- Style guide: does [the default one](https://developers.google.com/protocol-buffers/docs/style) suffice, or needs to be extended?
+- [Nested types](https://developers.google.com/protocol-buffers/docs/proto3#nested): what are the use cases where nested types are better than simple composition?
+
+## TODO
+- Object definition:
+  - Consolidate strategy on nested VS composed objects
+  - Consolidate strategy on file imports
+  - Consolidate styling guidelines
+  - Define library of reusable primary types
+- Developers (consumption):
+  - Library packaging (NPM for TypeScript definitions, JAR for Java classes)
+  - Code samples on how to connsume library packages
+- Documentation:
+  - Generate multiple Markdown files for each object definition
+  - Implement lookup and discoverability logic in Jekyll/Javascript
+
+## Test in Docker
 ```
 # Prepare a docker environment
 docker run -it ubuntu /bin/bash
