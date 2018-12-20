@@ -1,0 +1,15 @@
+syntax = "proto3";
+package org.finos.fo;
+option java_package = "org.finos.fo";
+
+message Contact {
+    message Id {
+        required string email = 1;
+        optional string twitter = 2;
+        optional string phone = 3;
+    }
+}
+
+message ContactList {
+    repeated Contact contacts = 1;
+}

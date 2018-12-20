@@ -1,0 +1,21 @@
+syntax = "proto3";
+package org.finos.fo;
+option java_package = "org.finos.fo";
+
+message Instrument {
+  required string name = 1;
+  message Id {
+    optional string ticker = 1;
+    optional string ISIN = 2;
+    optional string CUSIP = 3;
+    optional string SEDOL = 4;
+    optional string RIC = 5;
+    optional string BBG = 6;
+    optional string PERMID = 7;
+    optional string FIGI = 8;
+  }
+}
+
+message InstrumentList {
+  repeated Instrument instruments = 1;
+}

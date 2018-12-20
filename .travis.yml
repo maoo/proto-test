@@ -6,6 +6,7 @@ env:
     # - PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
     - PROTOC_GEN_TS_PATH="/usr/local/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
     - TS_OUT_DIR="./target/generated/ts"
+    - C_OUT_DIR="./target/generated/c"
     - JAVA_OUT_DIR="./target/generated/java"
     - PATH=$PATH:~/protobuf-${PROTOBUF_VERSION}/src
 cache:
@@ -19,9 +20,11 @@ before_install:
 
 script:
   - echo "Running the script!"
-  - mkdir -p $JAVA_OUT_DIR $TS_OUT_DIR
+  - mkdir -p $JAVA_OUT_DIR $TS_OUT_DIR $C_OUT_DIR
   # Generating TypeScript definitions
   - protoc --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ./library/person.proto
   # Generating Java classes
   - protoc --proto_path=./library --java_out=${JAVA_OUT_DIR} ./library/*.proto
   - ls -l ${TS_OUT_DIR}
+  # Generating C (TODO - plugin needs to be compiled)
+  # - protoc --c_out=${C_OUT_DIR} ./library/*.proto

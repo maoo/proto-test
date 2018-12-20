@@ -1,0 +1,16 @@
+syntax = "proto3";
+package org.finos.fo;
+option java_package = "org.finos.fo";
+
+message Position {
+    required Instrument instrument = 1;
+    required int64 holding = 2;
+}
+
+message Portfolio {
+    required string name = 1;
+    message Id {
+        optional string portfolioId = 1;
+    }
+    repeated Position positions = 2;
+}

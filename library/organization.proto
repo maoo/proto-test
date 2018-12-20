@@ -1,0 +1,11 @@
+syntax = "proto3";
+package org.finos.fo;
+option java_package = "org.finos.fo";
+
+message Organization {
+    required string name = 1;
+    message Id {
+        optional string LEI = 1;
+        optional string PERMID = 2;
+    }
+}
