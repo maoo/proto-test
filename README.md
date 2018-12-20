@@ -40,5 +40,6 @@ protoc --proto_path=./library --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --j
 protoc --proto_path=./library --java_out=${JAVA_OUT_DIR} ./library/*.proto
 
 # Build documentation
+go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
 protoc --proto_path=./library --plugin="protoc-gen-doc=${PROTOC_GEN_DOCS_PATH}" ./library/*.proto --doc_opt=markdown,specs.md --doc_out=${DOCS_OUT_DIR}
 ```
