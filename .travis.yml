@@ -3,6 +3,9 @@ language: java
 node_js:
   - "8.9.1"
 
+go:
+  - "1.11.4"
+
 env:
   global:
     - PROTOBUF_VERSION=3.6.1
