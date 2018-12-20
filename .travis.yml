@@ -8,7 +8,7 @@ env:
     # This is what works on Docker (ubuntu:latest, see README.md)
     # - PROTOC_GEN_TS_PATH="/usr/local/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
     # This is what works in Travis CI
-    - PROTOC_GEN_TS_PATH="/home/travis/.nvm/versions/node/v8.9.1/bin/protoc-gen-ts -> /home/travis/.nvm/versions/node/v8.9.1/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
+    - PROTOC_GEN_TS_PATH="/home/travis/.nvm/versions/node/v8.9.1/bin/protoc-gen-ts"
     - TS_OUT_DIR="./target/generated/ts"
     - C_OUT_DIR="./target/generated/c"
     - JAVA_OUT_DIR="./target/generated/java"
@@ -31,6 +31,5 @@ script:
   - ${PROTOC_CMD_PREFIX} --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ${PROTOBUF_SRC}
   # Generating Java classes
   - ${PROTOC_CMD_PREFIX} --java_out=${JAVA_OUT_DIR} ${PROTOBUF_SRC}
-  - ls -l ${TS_OUT_DIR}
   # Generating C (TODO - plugin needs to be compiled)
   # - protoc --c_out=${C_OUT_DIR} ./library/*.proto
