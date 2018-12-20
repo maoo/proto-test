@@ -3,7 +3,7 @@ package org.finos.fo;
 option java_package = "org.finos.fo";
 
 message Instrument {
-  required string name = 1;
+  string name = 1;
   message Id {
     string ticker = 1;
     string ISIN = 2;

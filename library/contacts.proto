@@ -4,7 +4,7 @@ option java_package = "org.finos.fo";
 
 message Contact {
     message Id {
-        required string email = 1;
+        string email = 1;
         string twitter = 2;
         string phone = 3;
     }

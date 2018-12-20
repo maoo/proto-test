@@ -3,7 +3,7 @@ package org.finos.fo;
 option java_package = "org.finos.fo";
 
 message Organization {
-    required string name = 1;
+    string name = 1;
     message Id {
         string LEI = 1;
         string PERMID = 2;
