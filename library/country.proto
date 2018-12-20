@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package org.finos.fo;
 option java_package = "org.finos.fo";
 
