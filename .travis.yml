@@ -3,8 +3,12 @@ language: java
 env:
   global:
     - PROTOBUF_VERSION=3.6.1
-    # - PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
-    - PROTOC_GEN_TS_PATH="/usr/local/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
+    # TODO - this should be local, ie ./node_modules/.bin/protoc-gen-ts,
+    # but needs a package.json devDependency definition
+    # This is what works on Docker (ubuntu:latest, see README.md)
+    # - PROTOC_GEN_TS_PATH="/usr/local/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
+    # This is what works in Travis CI
+    - PROTOC_GEN_TS_PATH="/home/travis/.nvm/versions/node/v8.9.1/bin/protoc-gen-ts -> /home/travis/.nvm/versions/node/v8.9.1/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
     - TS_OUT_DIR="./target/generated/ts"
     - C_OUT_DIR="./target/generated/c"
     - JAVA_OUT_DIR="./target/generated/java"
