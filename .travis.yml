@@ -28,6 +28,7 @@ cache:
     - /home/travis/protobuf-${PROTOBUF_VERSION}
 
 before_install:
+  - go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
   - "[[ -z \"${FORCE_PROTOBUF_INSTALL}\" ]] || rm -rf protobuf-${PROTOBUF_VERSION} ; echo 'Deleted Protobuf ${PROTOBUF_VERSION} installation'"
   - "[[ -d \"protobuf-${PROTOBUF_VERSION}\" ]] || ./install-protobuf.sh"
   - npm install -g ts-protoc-gen
@@ -42,5 +43,4 @@ script:
   # Generating C (TODO - plugin needs to be compiled)
   # - protoc --c_out=${C_OUT_DIR} ./library/*.proto
   # Generating Markdown documentation
-  - go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
   - ${PROTOC_CMD_PREFIX} --plugin="protoc-gen-doc=${PROTOC_GEN_DOCS_PATH}" --doc_opt=markdown,specs.md --doc_out=${DOCS_OUT_DIR} ${PROTOBUF_SRC}
