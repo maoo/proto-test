@@ -10,7 +10,7 @@ message Position {
 message Portfolio {
     required string name = 1;
     message Id {
-        optional string portfolioId = 1;
+        string portfolioId = 1;
     }
     repeated Position positions = 2;
 }

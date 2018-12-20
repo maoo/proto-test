@@ -5,8 +5,8 @@ option java_package = "org.finos.fo";
 message Contact {
     message Id {
         required string email = 1;
-        optional string twitter = 2;
-        optional string phone = 3;
+        string twitter = 2;
+        string phone = 3;
     }
 }
 

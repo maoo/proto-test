@@ -32,7 +32,7 @@ mkdir -p $JAVA_OUT_DIR $TS_OUT_DIR
 
 # Build Typescript definitions
 npm install -g ts-protoc-gen
-protoc --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ./library/person.proto
+protoc --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ./library/*.proto
 
 # Build Java
 protoc --proto_path=./library --java_out=${JAVA_OUT_DIR} ./library/*.proto

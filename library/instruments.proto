@@ -5,14 +5,14 @@ option java_package = "org.finos.fo";
 message Instrument {
   required string name = 1;
   message Id {
-    optional string ticker = 1;
-    optional string ISIN = 2;
-    optional string CUSIP = 3;
-    optional string SEDOL = 4;
-    optional string RIC = 5;
-    optional string BBG = 6;
-    optional string PERMID = 7;
-    optional string FIGI = 8;
+    string ticker = 1;
+    string ISIN = 2;
+    string CUSIP = 3;
+    string SEDOL = 4;
+    string RIC = 5;
+    string BBG = 6;
+    string PERMID = 7;
+    string FIGI = 8;
   }
 }
 
