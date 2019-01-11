@@ -1,0 +1,24 @@
+{
+  "name": "typescript-example",
+  "version": "0.0.1",
+  "description": "Example how to use generated model",
+  "license": "Apache-2.0",
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "maoo",
+    "email": "maoo@finos.org"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.5",
+    "typescript": "^2.9.2",
+    "ts-node": "^7.0.1",
+    "protobufjs": "^6.8.8",
+    "ts-protoc-gen": "^0.8.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "tojs": "pbjs -t static-module -w commonjs -o target/model.js ./library/*.proto",
+    "tots": "pbts -o model.d.ts target/model.js",
+    "sample": "ts-node sample.ts"
+  }
+}

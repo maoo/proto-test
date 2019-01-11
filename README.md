@@ -8,10 +8,13 @@ The set of ocject definitions is in the [library](library) folder.
 
 The transformations are done continuously by Travis CI (see [.travis.yml](.travis.yml)), which also takes care of installing the `protoc` commandline tool.
 
+Check output samples in the [`output-samples`](output-samples) folder.
+
 ## Features
 - Using Protocol Buffer version 3 to define object models
-- Generate TypeScript definitions and Java classes
-- Generate a single Markdown file with object documentation (Travis CI integration is WIP)
+- Generate [TypeScript definitions](output-samples/model.d.ts) and [Java classes](output-samples/java)
+- Runs a [Typescript `sample.ts`](sample.ts), which imports and uses the statically generated js (and ts) file
+- Generate a single Markdown file with object documentation (Travis CI integration is WIP), see [`output-samples/specs.md`](output-samples/specs.md)
 
 ## Open Questions
 - General recommendation on version 2 VS 3
@@ -37,7 +40,7 @@ The transformations are done continuously by Travis CI (see [.travis.yml](.travi
 # Prepare a docker environment
 docker run -it ubuntu /bin/bash
 apt-get update
-apt-get install curl git make build-essential npm golang
+apt-get install wget curl git make build-essential npm golang
 
 # Configure protobuf installation
 export PROTOBUF_VERSION=3.6.1
@@ -67,7 +70,13 @@ mkdir -p $JAVA_OUT_DIR $TS_OUT_DIR $DOCS_OUT_DIR
 
 # Build Typescript definitions
 npm install -g ts-protoc-gen
-protoc --proto_path=./library --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ./library/*.proto
+protoc --proto_path=./library --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --ts_out="service=true:${TS_OUT_DIR}" ./library/*.proto
+
+# Using protobufjs for Typescript
+npm install protobufjs --save
+chmod +x node_modules/protobufjs/cli/bin/*
+./node_modules/protobufjs/cli/bin/pbjs -t static-module -w commonjs -o model.js ./library/*.proto
+node_modules/protobufjs/cli/bin/pbts -o model.d.ts model.js
 
 # Build Java
 protoc --proto_path=./library --java_out=${JAVA_OUT_DIR} ./library/*.proto

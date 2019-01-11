@@ -31,7 +31,12 @@ before_install:
   - go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
   - "[[ -z \"${FORCE_PROTOBUF_INSTALL}\" ]] || rm -rf protobuf-${PROTOBUF_VERSION} ; echo 'Deleted Protobuf ${PROTOBUF_VERSION} installation'"
   - "[[ -d \"protobuf-${PROTOBUF_VERSION}\" ]] || ./install-protobuf.sh"
-  - npm install -g ts-protoc-gen
+  # Using protobufjs, using tojs and tots npm scripts
+  # - npm install -g ts-protoc-gen
+  - npm install
+  - npm run tojs
+  - npm run tots
+  - npm run sample
 
 script:
   - echo "Running the script!"
@@ -44,3 +49,9 @@ script:
   # - protoc --c_out=${C_OUT_DIR} ./library/*.proto
   # Generating Markdown documentation
   - ${PROTOC_CMD_PREFIX} --plugin="protoc-gen-doc=${PROTOC_GEN_DOCS_PATH}" --doc_opt=markdown,specs.md --doc_out=${DOCS_OUT_DIR} ${PROTOBUF_SRC}
+
+# NEXT: deployment stages to
+# 1. push html on gh-pages
+# 2. package generated js and ts code into NPM
+# 3. package generated .java code into JAR file, to install in Maven Central
+# 4. publish C++/C# code in NuGet
