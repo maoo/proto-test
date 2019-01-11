@@ -5,8 +5,6 @@ option java_package = "org.finos.fo";
 
 message Organization {
     string name = 1;
-    message Id {
-        string LEI = 1;
-        string PERMID = 2;
-    }
+    string LEI = 2;
+    string PERMID = 3;
 }

@@ -12,8 +12,6 @@ message Position {
 
 message Portfolio {
     string name = 1;
-    message Id {
-        string portfolioId = 1;
-    }
-    repeated Position positions = 2;
+    string portfolioId = 2;
+    repeated Position positions = 3;
 }

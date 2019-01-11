@@ -6,10 +6,9 @@
 // check .travis.yml
 import { org } from "./target/model.js";
 
-let contact = org.finos.fo.Contact.create(
-  org.finos.fo.Contact.Id.create({
+let contact = org.finos.fo.Contact.create({
     email: "maoo@finos.org", 
     twitter: "maoo", 
-    phone: "+34 123456" }));
+    phone: "+34 123456" });
 
 console.log(contact);

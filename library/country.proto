@@ -5,8 +5,6 @@ option java_package = "org.finos.fo";
 
 message Country {
     string name = 1;
-    message Id {
-        string ISOALPHA2 = 1;
-        string ISOALPHA3 = 2;
-    }
+    string ISOALPHA2 = 2;
+    string ISOALPHA3 = 3;
 }

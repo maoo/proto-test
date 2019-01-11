@@ -4,11 +4,9 @@ package org.finos.fo;
 option java_package = "org.finos.fo";
 
 message Contact {
-    message Id {
-        string email = 1;
-        string twitter = 2;
-        string phone = 3;
-    }
+    string email = 1;
+    string twitter = 2;
+    string phone = 3;
 }
 
 message ContactList {

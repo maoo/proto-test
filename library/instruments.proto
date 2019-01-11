@@ -5,16 +5,14 @@ option java_package = "org.finos.fo";
 
 message Instrument {
   string name = 1;
-  message Id {
-    string ticker = 1;
-    string ISIN = 2;
-    string CUSIP = 3;
-    string SEDOL = 4;
-    string RIC = 5;
-    string BBG = 6;
-    string PERMID = 7;
-    string FIGI = 8;
-  }
+  string ticker = 2;
+  string ISIN = 3;
+  string CUSIP = 4;
+  string SEDOL = 5;
+  string RIC = 6;
+  string BBG = 7;
+  string PERMID = 8;
+  string FIGI = 9;
 }
 
 message InstrumentList {
