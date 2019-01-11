@@ -16,11 +16,19 @@ Check output samples in the [`output-samples`](output-samples) folder.
 - Runs a [Typescript `sample.ts`](sample.ts), which imports and uses the statically generated js (and ts) file
 - Generate a single Markdown file with object documentation (Travis CI integration is WIP), see [`output-samples/specs.md`](output-samples/specs.md)
 
-## Open Questions
-- General recommendation on version 2 VS 3
-- Any best practice to work around inheritance absence?
-- Style guide: does [the default one](https://developers.google.com/protocol-buffers/docs/style) suffice, or needs to be extended?
-- [Nested types](https://developers.google.com/protocol-buffers/docs/proto3#nested): what are the use cases where nested types are better than simple composition?
+## ProtoBuf best practices
+
+To get started with ProtoBuf, open the [language guide](https://developers.google.com/protocol-buffers/docs/proto3) and start editing the `.proto` files in the [library](library) folder.
+
+Please take in consideration the [official styling docs](https://developers.google.com/protocol-buffers/docs/style) when writing .proto files; on top of it:
+- Define fine-grained, reusable objects
+- Use file and folder structure to define .proto library
+- Use one-per-file object definition on .proto files
+- [Nested types](https://developers.google.com/protocol-buffers/docs/proto3#nested) are disencouraged, unless they're clearly owned by an outer type, possibly as an implementation detail of that type
+
+ProtoBuf 3 doesn't provide any mechanism for inheritance; depending on the situation, the following options are available:
+- Protobuf’s “oneof” – You have to redefine any fields that otherwise would have been in a base class. Also this doesn’t work well with collections (i.e. “repeated”) unless you wrap it (since you can’t directly make a “repeated oneof”)
+- A single “wide” object that contains the UNION of all possible fields plus an enum field to discriminate between which type it is. And then some other data dictionary to tell you which fields will contain values depending on the type
 
 ## TODO
 - Object definition:
