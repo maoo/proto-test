@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for filepath in ./library/*.proto; do
+for filepath in ./proto/*.proto; do
     filename=$(basename $filepath)
     FILE_NAME=${filename%.*}
     echo "Running: ${PROTOC_CMD_PREFIX} \

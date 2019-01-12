@@ -3,7 +3,7 @@ syntax = "proto3";
 package org.finos.fo;
 option java_package = "org.finos.fo";
 
-import "primitives.proto";
+import "./primitives.proto";
 
 message Organization {
     Name name = 1;

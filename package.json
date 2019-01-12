@@ -17,7 +17,7 @@
   },
   "dependencies": {},
   "scripts": {
-    "tojs": "pbjs -t static-module -w commonjs -o target/model.js ./library/*.proto",
+    "tojs": "pbjs -t static-module -w commonjs -o target/model.js ./proto/*.proto",
     "tots": "pbts -o target/model.d.ts target/model.js",
     "sample": "ts-node sample.ts"
   }
