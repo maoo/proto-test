@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package org.finos.fo;
+option java_package = "org.finos.fo";
+
+message Name {
+    string name = 1;
+}
+
+message Id {
+    int64 id = 1;
+}

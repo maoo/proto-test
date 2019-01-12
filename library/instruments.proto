@@ -3,16 +3,19 @@ syntax = "proto3";
 package org.finos.fo;
 option java_package = "org.finos.fo";
 
+import "primitives.proto";
+
 message Instrument {
-  string name = 1;
-  string ticker = 2;
-  string ISIN = 3;
-  string CUSIP = 4;
-  string SEDOL = 5;
-  string RIC = 6;
-  string BBG = 7;
-  string PERMID = 8;
-  string FIGI = 9;
+  Name name = 1;
+  Id id = 2;
+  string ticker = 3;
+  string ISIN = 4;
+  string CUSIP = 5;
+  string SEDOL = 6;
+  string RIC = 7;
+  string BBG = 8;
+  string PERMID = 9;
+  string FIGI = 10;
 }
 
 message InstrumentList {

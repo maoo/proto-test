@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "instruments.proto";
+import "primitives.proto";
 
 package org.finos.fo;
 option java_package = "org.finos.fo";
@@ -11,7 +12,8 @@ message Position {
 }
 
 message Portfolio {
-    string name = 1;
-    string portfolioId = 2;
-    repeated Position positions = 3;
+    Name name = 1;
+    Id id = 2;
+    string portfolioId = 3;
+    repeated Position positions = 4;
 }

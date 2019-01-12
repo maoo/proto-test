@@ -9,12 +9,8 @@ go:
 env:
   global:
     - PROTOBUF_VERSION=3.6.1
-    # TODO - this should be local, ie ./node_modules/.bin/protoc-gen-ts,
-    # but needs a package.json devDependency definition
-    # This is what works on Docker (ubuntu:latest, see README.md)
-    # - PROTOC_GEN_TS_PATH="/usr/local/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
-    # This is what works in Travis CI
-    - PROTOC_GEN_TS_PATH="/home/travis/.nvm/versions/node/v8.9.1/bin/protoc-gen-ts"
+    # Using protobufjs now, see tojs and tots npm scripts
+    # - PROTOC_GEN_TS_PATH="/home/travis/.nvm/versions/node/v8.9.1/bin/protoc-gen-ts"
     - PROTOC_GEN_DOCS_PATH="/root/go/bin/protoc-gen-doc"
     - TS_OUT_DIR="./target/generated/ts"
     - C_OUT_DIR="./target/generated/c"
@@ -31,7 +27,7 @@ before_install:
   - go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
   - "[[ -z \"${FORCE_PROTOBUF_INSTALL}\" ]] || rm -rf protobuf-${PROTOBUF_VERSION} ; echo 'Deleted Protobuf ${PROTOBUF_VERSION} installation'"
   - "[[ -d \"protobuf-${PROTOBUF_VERSION}\" ]] || ./install-protobuf.sh"
-  # Using protobufjs, using tojs and tots npm scripts
+  # Using protobufjs now, see tojs and tots npm scripts
   # - npm install -g ts-protoc-gen
   - npm install
   - npm run tojs
@@ -39,16 +35,15 @@ before_install:
   - npm run sample
 
 script:
-  - echo "Running the script!"
   - mkdir -p $JAVA_OUT_DIR $TS_OUT_DIR $C_OUT_DIR
-  # Generating TypeScript definitions
-  - ${PROTOC_CMD_PREFIX} --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ${PROTOBUF_SRC}
   # Generating Java classes
   - ${PROTOC_CMD_PREFIX} --java_out=${JAVA_OUT_DIR} ${PROTOBUF_SRC}
+  # Generating Markdown documentation
+  - ./build-docs.sh
   # Generating C (TODO - plugin needs to be compiled)
   # - protoc --c_out=${C_OUT_DIR} ./library/*.proto
-  # Generating Markdown documentation
-  - ${PROTOC_CMD_PREFIX} --plugin="protoc-gen-doc=${PROTOC_GEN_DOCS_PATH}" --doc_opt=markdown,specs.md --doc_out=${DOCS_OUT_DIR} ${PROTOBUF_SRC}
+  # protoc-gen-ts was deprecated in favour of protobufjs
+  # - ${PROTOC_CMD_PREFIX} --plugin="protoc-gen-ts=${PROTOC_GEN_TS_PATH}" --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" --ts_out="service=true:${TS_OUT_DIR}" ${PROTOBUF_SRC}
 
 # NEXT: deployment stages to
 # 1. push html on gh-pages

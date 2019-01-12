@@ -55,6 +55,7 @@ export PROTOBUF_VERSION=3.6.1
 # export PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
 export PROTOC_GEN_TS_PATH="/usr/local/lib/node_modules/ts-protoc-gen/bin/protoc-gen-ts"
 export PROTOC_GEN_DOCS_PATH="/root/go/bin/protoc-gen-doc"
+# export PROTOC_GEN_DOCS_PATH="/Users/m/w/go/bin/protoc-gen-doc"
 export TS_OUT_DIR="./target/generated/ts"
 export JAVA_OUT_DIR="./target/generated/java"
 export DOCS_OUT_DIR="./target/generated/docs"

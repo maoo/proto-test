@@ -3,8 +3,11 @@ syntax = "proto3";
 package org.finos.fo;
 option java_package = "org.finos.fo";
 
+import "primitives.proto";
+
 message Organization {
-    string name = 1;
-    string LEI = 2;
-    string PERMID = 3;
+    Name name = 1;
+    Id id = 2;
+    string LEI = 3;
+    string PERMID = 4;
 }

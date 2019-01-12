@@ -3,8 +3,10 @@ syntax = "proto3";
 package org.finos.fo;
 option java_package = "org.finos.fo";
 
+import "primitives.proto";
+
 message Country {
-    string name = 1;
+    Name name = 1;
     string ISOALPHA2 = 2;
     string ISOALPHA3 = 3;
 }
