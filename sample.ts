@@ -8,6 +8,7 @@
 // TODO - Consume FOS objects shipped from an NPMJS package
 import { org } from "./target/model.js";
 
+// Instanciate a Contact (see proto/contacts.proto) and print out
 let contact = org.finos.fo.Contact.create({
     name: org.finos.fo.Name.create({name: "maoo@finos.org"}), 
     id: org.finos.fo.Id.create({int: 123456}), 
@@ -17,39 +18,36 @@ let contact = org.finos.fo.Contact.create({
 
 console.log(contact);
 
+// Instanciate a Country (see proto/country.proto) and print out
 let country = org.finos.fo.Country.create({
     name: org.finos.fo.Name.create({name: "maoo@finos.org"}), 
     ISOALPHA2: "abc", 
     ISOALPHA3: "def" });
 
 console.log(country);
+
+console.log("JSON version...");
 console.log(country.toJSON());
 
-// TODO - how to extend an object? With and without using protobuf?
-// 
-// export interface IExtContact extends org.finos.fo.IContact {
-//     org?: (string|null);
-// }
+// Extending the Contact object with "org" field
+export interface IExtContact extends org.finos.fo.IContact {
+    org?: (string|null);
+}
 
-// export class ExtendedContact extends org.finos.fo.Contact implements IExtContact {
-//     ExtendedContact(properties) {
-//         if (properties)
-//             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-//                 if (properties[keys[i]] != null)
-//                     this[keys[i]] = properties[keys[i]];
-//     };
+// Define a new object called ExtendedContact
+export class ExtendedContact extends org.finos.fo.Contact implements IExtContact {
+    public static create(properties?: IExtContact): ExtendedContact {
+        return new ExtendedContact(properties);
+    };
+}
 
-//     create(properties?: IExtContact): ExtendedContact {
-//         return new ExtendedContact(properties);
-//     };
-// }
+// Instanciate ExtendedContact and print out
+let extContact = ExtendedContact.create({
+    name: org.finos.fo.Name.create({name: "maoo@finos.org"}), 
+    id: org.finos.fo.Id.create({int: 123456}), 
+    email: "maoo@finos.org",
+    org: "FINOS",
+    twitter: "maoo", 
+    phone: "+34 123456" });
 
-// let extContact = ExtendedContact.create({
-//     name: org.finos.fo.Name.create({name: "maoo@finos.org"}), 
-//     id: org.finos.fo.Id.create({id: 123456}), 
-//     email: "maoo@finos.org",
-//     org: "FINOS",
-//     twitter: "maoo", 
-//     phone: "+34 123456" });
-
-// console.log(extContact);
+console.log(extContact);
