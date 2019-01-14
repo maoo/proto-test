@@ -48,17 +48,9 @@ To configure it, open [settings.yml](https://code.visualstudio.com/docs/getstart
 ```
 
 ## TODO
-- Object definition:
-  - Consolidate strategy on nested VS composed objects
-  - Consolidate strategy on file imports
-  - Consolidate styling guidelines
-  - Define library of reusable primary types
-- Developers (consumption):
-  - Library packaging (NPM for TypeScript definitions, JAR for Java classes)
-  - Code samples on how to consume library packages
-- Documentation:
-  - Generate multiple Markdown files for each object definition
-  - Implement lookup and discoverability logic in Jekyll/Javascript
+- Document how to extend objects, checkout [https://finosfoundation.atlassian.net/wiki/spaces/FO/pages/807763985/Proposed+Objects](https://finosfoundation.atlassian.net/wiki/spaces/FO/pages/807763985/Proposed+Objects)
+- Library packaging (NPM for TypeScript definitions, JAR for Java classes)
+- Implement index page and filtering of object docs
 
 ## Test in Docker
 ```
